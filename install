@@ -3,10 +3,9 @@ cd $HOME
 
 sudo xbps-install -u
 sudo xbps-install xorg sddm i3 i3status clang gcc llvm gdb lldb elogind nano feh
-dunst pulseaudio git nodejs kitty neofetch tmux curl wget cmake meson ninja
+dunst pulseaudio nodejs kitty neofetch tmux curl wget cmake meson ninja
 virt-manager qemu base-devel
 
-git clone https://github.com/Cameron-Ord/void-setup-files ~/
 mkdir -p ~/.config
 
 echo "$(cat .bashrc)" > ~/.bashrc
