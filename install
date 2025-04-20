@@ -1,0 +1,46 @@
+!#/bin/bash
+cd $HOME
+
+sudo xbps-install -u
+sudo xbps-install xorg sddm i3 i3status clang gcc llvm gdb lldb elogind nano feh
+dunst pulseaudio git nodejs kitty neofetch tmux curl wget cmake meson ninja
+virt-manager qemu base-devel
+
+mkdir -p ~/.config
+
+echo "$(cat .bashrc)" > ~/.bashrc
+echo "$(cat .tmux.conf)" > ~/.tmux.conf
+
+cp -r kitty/ ~/.config/kitty
+cp -r nvim/ ~/.config/nvim
+cp -r i3 ~/.config/i3
+
+sudo mkdir -p /etc/sddm.conf.d/
+sudo cp sddm/theme.conf /etc/sddm.conf.d/
+
+git clone https://github.com/neovim/neovim && cd neovim
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
+
+cd $HOME
+
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+git config --global user.email "cameron.ian.ronald.ord@outlook.com"
+git config --global user.name "Cameron-Ord"
+git config --global init.defaultBranch main
+
+git clone https://github.com/Cameron-Ord/Music-Visualizer ~/
+git clone https://github.com/Cameron-Ord/svte ~/
+git clone https://github.com/Cameron-Ord/professional_portfolio ~/
+
+sudo mkdir -p ~/.ssh
+cd ~/.ssh
+ssh-keygen -t ed25519 -C "cameron.ian.ronald.ord@outlook.com"
+cd $HOME
+
+sudo curl https://w.wallhaven.cc/full/jx/wallhaven-jxm1mw.jpg --output ~/.config/i3/bg.png
+
+sudo ln -s /etc/sv/dbus /var/service
+sudo ln -s /etc/sv/sddm /var/service
