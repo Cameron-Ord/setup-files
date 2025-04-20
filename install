@@ -1,10 +1,8 @@
-!#/bin/bash
-cd $HOME
+#!/bin/bash
 
 sudo xbps-install -u
-sudo xbps-install xorg sddm i3 i3status clang gcc llvm gdb lldb elogind nano feh
-dunst pulseaudio nodejs kitty neofetch tmux curl wget cmake meson ninja
-virt-manager qemu base-devel
+sudo xbps-install xorg sddm i3 i3status clang gcc llvm gdb lldb elogind nano feh dunst pulseaudio nodejs kitty neofetch tmux curl wget cmake meson ninja virt-manager qemu base-devel 
+sudo xbps-install NetworkManager xterm alacritty firefox dmenu
 
 mkdir -p ~/.config
 
@@ -17,6 +15,8 @@ cp -r i3 ~/.config/i3
 
 sudo mkdir -p /etc/sddm.conf.d/
 sudo cp sddm/theme.conf /etc/sddm.conf.d/
+
+cd $HOME
 
 git clone https://github.com/neovim/neovim && cd neovim
 make CMAKE_BUILD_TYPE=RelWithDebInfo
@@ -44,3 +44,4 @@ sudo curl https://w.wallhaven.cc/full/jx/wallhaven-jxm1mw.jpg --output ~/.config
 
 sudo ln -s /etc/sv/dbus /var/service
 sudo ln -s /etc/sv/sddm /var/service
+sudo ln -s /etc/sv/NetworkManager /var/service
