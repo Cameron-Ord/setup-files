@@ -1,0 +1,50 @@
+#!/bin/bash
+
+sudo apt update
+sudo apt upgrade
+
+sudo apt install gcc clang llvm gdb lldb elogind nano dunst meson xorg
+sudo apt install ninja-build gettext cmake curl build-essential network-manager
+sudo apt install pulseaudio xterm alacritty kitty dmenu sddm  wget i3 i3status
+
+mkdir -p ~/.config
+
+echo "$(cat .bashrc)" > ~/.bashrc
+echo "$(cat .tmux.conf)" > ~/.tmux.conf
+
+cp -r kitty/ ~/.config/kitty
+cp -r nvim/ ~/.config/nvim
+cp -r alacritty/ ~/.config/alacritty
+cp -r i3 ~/.config/i3
+
+sudo mkdir -p /etc/sddm.conf.d/
+sudo cp sddm/theme.conf /etc/sddm.conf.d/
+
+cd $HOME
+
+git clone https://github.com/neovim/neovim && cd neovim
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
+
+cd $HOME
+
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+git config --global user.email "cameron.ian.ronald.ord@outlook.com"
+git config --global user.name "Cameron-Ord"
+git config --global init.defaultBranch main
+
+git clone https://github.com/Cameron-Ord/Music-Visualizer ~/Music-Visualizer
+git clone https://github.com/Cameron-Ord/svte ~/svte
+git clone https://github.com/Cameron-Ord/professional_portfolio ~/profport
+
+sudo mkdir -p ~/.ssh
+cd ~/.ssh
+sudo ssh-keygen -t ed25519 -C "cameron.ian.ronald.ord@outlook.com"
+cd $HOME
+
+sudo curl https://w.wallhaven.cc/full/jx/wallhaven-jxm1mw.jpg --output ~/.config/i3/bg.png
+
+sudo systemctl enable dbus
+sudo systemctl enable sddm
