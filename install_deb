@@ -3,9 +3,10 @@
 sudo apt update
 sudo apt upgrade
 
-sudo apt install gcc clang llvm gdb lldb elogind nano dunst meson xorg
+sudo apt install gcc clang llvm gdb lldb nano dunst meson xorg
 sudo apt install ninja-build gettext cmake curl build-essential network-manager
 sudo apt install pulseaudio xterm alacritty kitty dmenu sddm  wget i3 i3status
+sudo apt install nodejs npm
 
 mkdir -p ~/.config
 
@@ -46,5 +47,3 @@ cd $HOME
 
 sudo curl https://w.wallhaven.cc/full/jx/wallhaven-jxm1mw.jpg --output ~/.config/i3/bg.png
 
-sudo systemctl enable dbus
-sudo systemctl enable sddm
