@@ -42,7 +42,7 @@ git clone https://github.com/Cameron-Ord/professional_portfolio ~/profport
 
 sudo mkdir -p ~/.ssh
 cd ~/.ssh
-sudo ssh-keygen -t ed25519 -C "cameron.ian.ronald.ord@outlook.com"
+ssh-keygen -t ed25519 -C "cameron.ian.ronald.ord@outlook.com"
 cd $HOME
 
 sudo curl https://w.wallhaven.cc/full/jx/wallhaven-jxm1mw.jpg --output ~/.config/i3/bg.png
